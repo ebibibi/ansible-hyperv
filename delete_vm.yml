@@ -1,27 +1,27 @@
 ---
 - name: Delete VM
-  hosts: b07.lab.ltsai.com 
+  hosts: 192.168.1.10
   gather_facts: no
 
   tasks:
-    - name: Include vm env var
-      include_vars:
-        file: "{{env}}.yml"
+  - name: Include vm env var
+    include_vars:
+      file: "TestEnvironments.yml"
 
-    - name: Poweroff VMs
-      win_hyperv_guest:
-        name: "{{item.name}}"
-        state: poweroff
-      with_items: "{{ vms }}"
+  - name: Poweroff VMs
+    win_hyperv_guest:
+      name: "{{item.name}}"
+      state: poweroff
+    with_items: "{{ vms }}"
 
-    - name: Delete VMs
-      win_hyperv_guest:
-        name: "{{item.name}}"
-        state: absent
-      with_items: "{{ vms }}"
+  - name: Delete VMs
+    win_hyperv_guest:
+      name: "{{item.name}}"
+      state: absent
+    with_items: "{{ vms }}"
 
-    - name: Remove vhd
-      win_file:
-        path: "{{item.dest_vhd}}"
-        state: absent  
-      with_items: "{{ vms }}"
+  - name: Remove vhd
+    win_file:
+      path: "{{item.dest_vhd}}"
+      state: absent  
+    with_items: "{{ vms }}"

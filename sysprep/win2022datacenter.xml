@@ -13,8 +13,8 @@
             </OOBE>
             <UserAccounts>
                 <AdministratorPassword>
-                    <Value>TgBlAHMAdABlAGQASAB5AHAAZQByAHYAbgBvAFAAQABzAHMAdwAwAHIAZABBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=</Value>
-                    <PlainText>false</PlainText>
+                    <Value>YourP@ssw0rd</Value>
+                    <PlainText>true</PlainText>
                 </AdministratorPassword>
             </UserAccounts>
             <TimeZone>Tokyo Standard Time</TimeZone>

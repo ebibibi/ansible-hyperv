@@ -1,2 +1,7 @@
 [hyper-v]
-192.168.1.10
+nestedhyper-v ansible_host=192.168.1.10
+
+[windows]
+windowsvm1 ansible_host=10.1.1.1
+windowsvm2 ansible_host=10.1.1.2
+

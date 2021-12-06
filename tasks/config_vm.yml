@@ -1,0 +1,17 @@
+# change vm name
+- name: Change VM name
+  win_hostname:
+    name: "{{ computername }}"
+  register: res
+
+- name: debug res
+  debug:
+    msg: "{{ res }}"
+
+- name: Reboot
+  win_reboot:
+  when: res.reboot_required
+
+
+
+

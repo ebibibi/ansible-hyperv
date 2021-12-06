@@ -1,7 +1,6 @@
 [hyper-v]
-nestedhyper-v ansible_host=192.168.1.10
+nestedhyperv ansible_host=192.168.1.10
 
 [windows]
-windowsvm1 ansible_host=10.1.1.1
-windowsvm2 ansible_host=10.1.1.2
-
+10.1.1.1 computername=windowsvm1
+10.1.1.2 computername=windowsvm2

@@ -1,6 +1,6 @@
 ---
 - name: Delete VM
-  hosts: 192.168.1.10
+  hosts: nestedhyperv
   gather_facts: no
 
   tasks:

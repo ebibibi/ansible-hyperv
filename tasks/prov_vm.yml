@@ -6,7 +6,6 @@
   win_stat:
     path: "{{item.dest_vhd}}"
     get_checksum: false
-    get_md5: false
   with_items: "{{ vms }}"
   register: file_info
 
@@ -60,9 +59,7 @@
     state: started 
   with_items: "{{ vms }}"
 
-# wait_for_connection, needs to be in another play because 
-# it uses the current inventory in this play
-- name: Wait for VM to be running
+- name: Check winrm connectivity
   win_wait_for:
     host: "{{ item.network.ip }}"
     port: "{{ ansible_port }}" 

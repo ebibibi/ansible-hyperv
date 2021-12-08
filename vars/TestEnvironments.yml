@@ -32,3 +32,20 @@ vms:
 
     src_vhd: "E:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
     dest_vhd: "E:\\Hyper-V\\Virtual hard disks\\windowsvm2.vhdx"
+
+  - type: windows
+    name: "windowsvm3"
+   
+    cpu: 2
+    memory: 4096MB
+
+    network:
+      ip: 10.1.1.3
+      netmask: 255.255.255.0
+      gateway: 10.1.1.254
+      dns: 192.168.1.1
+      
+    network_switch: 'Nested NAT Switch' 
+
+    src_vhd: "E:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
+    dest_vhd: "E:\\Hyper-V\\Virtual hard disks\\windowsvm3.vhdx"

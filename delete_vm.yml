@@ -6,7 +6,7 @@
   tasks:
   - name: Include vm env var
     include_vars:
-      file: "TestEnvironments.yml"
+      file: "Environments.yml"
 
   - name: Poweroff VMs
     win_hyperv_guest:

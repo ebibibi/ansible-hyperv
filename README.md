@@ -34,3 +34,7 @@ Ansibleを用いてHyper-V + WindowsでInfrastructure as Codeを実現します�
 実際に環境およびsysprep実行済みイメージの準備～playbook実行までをYoutubeで解説していますので、参考にしてください。
 
 * https://www.youtube.com/watch?v=qcGGHG_aoRY&list=PLas-S4LkjlLr27Dy5x80qUNvVFCPDb9fX
+
+下記のドキュメントも準備に利用してください。
+
+* https://github.com/ebibibi/ansible-hyperv/blob/master/prepare.md

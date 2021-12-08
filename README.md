@@ -1,59 +1,36 @@
-# Introduction
+# 紹介
 
-This is heavily inspired by [glenndehaan](https://github.com/glenndehaan/ansible-win_hyperv_guest)'s original code to provision a vm on HyperV.
+Ansibleを用いてHyper-V + WindowsでInfrastructure as Codeを実現します。
 
-The code has been modified to provision VMs by:
-* Cloning a disk
-* Setting up the IP 
-* Powering on the VM
-* Wait for WinRM port to be available
+これは下記からforkされたものです。
 
-The configuration is stored as an environment yaml file, such as `vars/sit.yml`. This is meant to allow the user to define the environments such as DEV/UAT/SIT and its associated network information for each vm.
+ - tsailiming/ansible-hyperv: Sample Ansible Playbook to provision VM on HyperV https://github.com/tsailiming/ansible-hyperv
 
-# Requirements
+理解しやすいようにより単純化されており、最新のWindows Server 2022で動作確認しています。
 
-* Win2012R2 vhd image with WinRM enabled. You can use Ansible's [ConfigureRemotingForAnsible.ps1](https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1)
-* MS SQL 2014 Express installer. 
-* .Net Framework >= 4.0, if you want to run OrchardCMS, inclduding the setup.exe
-* OrchardCMS is downloaded from github releases
+
+# 前提条件
+
+* Hyper-Vサーバーが必要です
+* Hyper-VサーバーはAnsibleで管理可能(WinRM有効化)な状態である必要があります。
+* Ansibleで管理可能なWindows Server 2012 R2以降のsysprep実行済みイメージファイル。
 
 # Playbooks
 
-## Creation of VM
-There is a sample `create_vm.yml` playbook:
-* Provision a sit environment with 2 VMS and create the necessary groups: web and db
-* Configure static ips
-* `wait_for` WinRM is up before exiting
+## VM作成
 
-## Building Golden Template
+1. VM作成のパラーメーターは `vars/TestEnvironments.yml` に記載されています。こちらのファイルを希望に合わせて編集してください。
+1. `hosts` に生成するVMのIPアドレスでエントリを追加します。
+1. `create_vm.yml` を実行することで仮想マシンが実際に作成されます。
 
-The playbook `build_golden.yml` is use to install the necessary software using roles. After building the image, you can then use the vhd in your environment yaml file.
+    ansible-playbook -i hosts create_vm.yml
 
-## Deploying Application
+## VM削除
 
-`prov_web_db.yml` is to provision the sample `App_Data` and restore a database from a backup from templates. The roles to install the IIS and MS-SQL have been disabled by default. 
+    ansible-playbook -i hosts delete_vm.yml
 
-## Deleting the VMs
+## より詳しい利用方法
 
-Use `delete_vm.yml` to delete the vms and clean out the disk.
+実際に環境およびsysprep実行済みイメージの準備～playbook実行までをYoutubeで解説していますので、参考にしてください。
 
-# Running the playbook
-
-You can change enviornment by either editing the `var/` yaml files or using `-e` option in the command line.
-
-Ansible Tower can also be used by using a survey form.
-
-# Script
-
-There is a `bin/run.ps1` sample script that calls Ansible Tower API to launch the Job Teamplate and monitor the job till it exits.
-
-# Credits
-
-The various roles and PowerShell scripts are adopted from:
-
-* https://github.com/bennojoy/ansible-win-sql2014-express
-* https://github.com/glenndehaan/ansible-win_hyperv_guest
-* https://github.com/nitzmahone/orchard_cms
-
-
-
+* https://www.youtube.com/watch?v=qcGGHG_aoRY&list=PLas-S4LkjlLr27Dy5x80qUNvVFCPDb9fX

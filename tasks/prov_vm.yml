@@ -1,6 +1,6 @@
 - name: Include vm env var
   include_vars:
-    file: "TestEnvironments.yml"
+    file: "Environments.yml"
 
 - name: Check whether vhdx already exists
   win_stat:

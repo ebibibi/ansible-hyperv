@@ -1,5 +1,5 @@
 [hyperv]
-nestedhyperv ansible_host=192.168.1.10
+nestedhyperv
 
 [windows]
 10.1.1.1 computername=windowsvm1

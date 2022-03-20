@@ -12,12 +12,12 @@
   win_reboot:
   when: res.reboot_required
 
-- name: OpsRampエージェントインストール
-  win_package:
-    path: "\\\\nestedhyperv\\Share\\OpsRamp\\OpsRampAgent-demo001.exe"
-    Product_Id: "5DD30F80-C9BD-429B-89CA-03C0578C77B4"
-    username: administrator
-    password: NestedHypervnoP@ssw0rd
+#- name: OpsRampエージェントインストール
+#  win_package:
+#    path: "\\\\nestedhyperv\\Share\\OpsRamp\\OpsRampAgent-demo001.exe"
+#    Product_Id: "5DD30F80-C9BD-429B-89CA-03C0578C77B4"
+#    username: administrator
+#    password: NestedHypervnoP@ssw0rd
 
 
 

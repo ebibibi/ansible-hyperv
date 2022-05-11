@@ -16,6 +16,12 @@
                     <Value>TgBlAHMAdABlAGQASAB5AHAAZQByAHYAbgBvAFAAQABzAHMAdwAwAHIAZABBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=</Value>
                     <PlainText>false</PlainText>
                 </AdministratorPassword>
+                <LocalAccounts>
+                    <LocalAccount wcm:action="add">
+                        <Group>Administrators</Group>
+                        <Name>Administrator</Name>
+                    </LocalAccount>
+                </LocalAccounts>                
             </UserAccounts>
             <TimeZone>Tokyo Standard Time</TimeZone>
         </component>

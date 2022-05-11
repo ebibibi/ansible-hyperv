@@ -10,7 +10,13 @@
                     <Value>TgBlAHMAdABlAGQASAB5AHAAZQByAHYAbgBvAFAAQABzAHMAdwAwAHIAZABBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=</Value>
                     <PlainText>false</PlainText>
                 </AdministratorPassword>
-            </UserAccounts>
+                <LocalAccounts>
+                    <LocalAccount wcm:action="add">
+                        <Group>Administrators</Group>
+                        <Name>Administrator</Name>
+                    </LocalAccount>
+                </LocalAccounts>
+                </UserAccounts>
             <TimeZone>Tokyo Standard Time</TimeZone>
         </component>
         <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -22,7 +28,7 @@
     </settings>
     <settings pass="specialize">
         <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <ProductKey>xxxxx-xxxxx-xxxxx-xxxxx-xxxxx</ProductKey>
+            <ProductKey>PN9C2-Y7KC6-W4DKX-FWQJW-82QGT</ProductKey>
             <ComputerName>*</ComputerName>
         </component>
     </settings>

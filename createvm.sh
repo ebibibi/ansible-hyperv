@@ -1,0 +1,1 @@
+ansible-playbook -i hosts create_vm.yml

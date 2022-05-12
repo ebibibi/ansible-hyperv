@@ -1,29 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <unattend xmlns="urn:schemas-microsoft-com:unattend">
     <settings pass="oobeSystem">
+        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+            <OOBE>
+                <HideEULAPage>true</HideEULAPage>
+                <ProtectYourPC>3</ProtectYourPC>
+            </OOBE>
+            <UserAccounts>
+                <AdministratorPassword>
+                    <Value>xxxxx</Value>
+                    <PlainText>false</PlainText>
+                </AdministratorPassword>
+            </UserAccounts>
+            <TimeZone>Tokyo Standard Time</TimeZone>
+            <AutoLogon>
+                <Username>administrator</Username>
+                <LogonCount>1</LogonCount>
+                <Enabled>true</Enabled>
+                <Password>
+                    <Value>xxxxx</Value>
+                    <PlainText>false</PlainText>
+                </Password>
+            </AutoLogon>
+        </component>
         <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <InputLocale>0411:E0010411</InputLocale>
             <SystemLocale>ja-JP</SystemLocale>
             <UILanguage>ja-JP</UILanguage>
             <UserLocale>ja-JP</UserLocale>
-        </component>
-        <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <OOBE>
-                <HideEULAPage>true</HideEULAPage>
-            </OOBE>
-            <UserAccounts>
-                <AdministratorPassword>
-                    <Value>TgBlAHMAdABlAGQASAB5AHAAZQByAHYAbgBvAFAAQABzAHMAdwAwAHIAZABBAGQAbQBpAG4AaQBzAHQAcgBhAHQAbwByAFAAYQBzAHMAdwBvAHIAZAA=</Value>
-                    <PlainText>false</PlainText>
-                </AdministratorPassword>
-                <LocalAccounts>
-                    <LocalAccount wcm:action="add">
-                        <Group>Administrators</Group>
-                        <Name>Administrator</Name>
-                    </LocalAccount>
-                </LocalAccounts>                
-            </UserAccounts>
-            <TimeZone>Tokyo Standard Time</TimeZone>
         </component>
     </settings>
     <settings pass="specialize">
@@ -32,5 +36,5 @@
             <ComputerName>*</ComputerName>
         </component>
     </settings>
-    <cpi:offlineImage cpi:source="wim:e:/windowsimages/install.wim#Windows 10 Enterprise" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
+    <cpi:offlineImage cpi:source="wim:e:/windowsimages/win11_install.wim#Windows 10 Enterprise" xmlns:cpi="urn:schemas-microsoft-com:cpi" />
 </unattend>

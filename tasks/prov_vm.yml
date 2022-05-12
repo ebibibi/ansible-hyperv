@@ -63,6 +63,6 @@
   win_wait_for:
     host: "{{ item.network.ip }}"
     port: "{{ ansible_port }}" 
-    timeout: 300
+    timeout: 3000
   with_items: "{{ vms }}"
 

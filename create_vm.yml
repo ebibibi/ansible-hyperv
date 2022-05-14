@@ -5,13 +5,6 @@
   tasks:
     - import_tasks: tasks/prov_vm.yml
 
-- name: Wait
-  hosts: windows
-  gather_facts: no
-  tasks:
-    - wait_for_connection:
-        timeout: 300
-
 - name: Congifure VM
   hosts: windows
   gather_facts: no

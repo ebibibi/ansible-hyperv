@@ -61,3 +61,8 @@ Hyper-Vのホストはどのように準備しても構いませんが、検証�
 配置した場所を `Environments.yml` 上に記載してください。
 
 以上で準備は完了です。playbookが実行可能です。
+
+## playbook実行方法(の例)
+- WSL2を起動
+- cd /mnt/e/repos/ansible-hyperv (※gitレポジトリまで移動)
+- ansible-playbook -i hosts create_vm.yml

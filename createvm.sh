@@ -1,1 +1,1 @@
-ansible-playbook -i hosts create_vm.yml
+ansible-playbook -i hosts create_vm_only.yml

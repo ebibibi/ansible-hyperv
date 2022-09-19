@@ -6,3 +6,6 @@ nestedhyperv
 10.1.1.2 computername=dc02
 10.1.1.3 computername=win10
 10.1.1.4 computername=win11
+
+[firstDC]
+10.1.1.1

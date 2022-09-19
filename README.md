@@ -21,13 +21,17 @@ Ansibleを用いてHyper-V + WindowsでInfrastructure as Codeを実現します�
 
 1. VM作成のパラーメーターは `vars/TestEnvironments.yml` に記載されています。こちらのファイルを希望に合わせて編集してください。
 1. `hosts` に生成するVMのIPアドレスでエントリを追加します。
-1. `create_vm.yml` を実行することで仮想マシンが実際に作成されます。
+1. `create_vms.yml` を実行することで仮想マシンが実際に作成されます。
 
-    ansible-playbook -i hosts create_vm.yml
+    ansible-playbook -i hosts create_vms.yml
 
 ## VM削除
 
-    ansible-playbook -i hosts delete_vm.yml
+    ansible-playbook -i hosts delete_vms.yml
+
+## ActiveDirectory環境作成
+
+    ansible-playbook -i hosts create_ad.yml
 
 ## より詳しい利用方法
 

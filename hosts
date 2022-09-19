@@ -9,3 +9,12 @@ nestedhyperv
 
 [firstDC]
 10.1.1.1
+
+[domainMembers]
+10.1.1.2
+10.1.1.3
+10.1.1.4
+
+[DCs]
+10.1.1.2
+

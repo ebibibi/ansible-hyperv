@@ -22,14 +22,14 @@
     name: w32time
     state: started  
 
-- name: Disable firewall for Domain, Public and Private profiles
-  win_firewall:
-    state: disabled
-    profiles:
-    - Domain
-    - Private
-    - Public
-  tags: disable_firewall
+#- name: Disable firewall for Domain, Public and Private profiles
+#  win_firewall:
+#    state: disabled
+#    profiles:
+#    - Domain
+#    - Private
+#    - Public
+#  tags: disable_firewall
 
 - name: Install Active Directory
   win_feature: >
@@ -60,8 +60,11 @@
     - '127.0.0.1'
 
 - name: Create reverse DNS zone
-  win_shell: "Add-DnsServerPrimaryZone -NetworkID {{forest.reverse_dns_zone}} -ReplicationScope Forest"
+  win_shell: "if($null -eq (Get-DnsServerZone -Name {{forest.reverse_dns_zone_name}})) {Add-DnsServerPrimaryZone -NetworkID {{forest.reverse_dns_zone}} -ReplicationScope Forest}"
   retries: 30
   delay: 60
   register: result           
-  until: result is succeeded
+
+- name: debug
+  debug:
+    msg: "{{ result }}"

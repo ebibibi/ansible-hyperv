@@ -1,0 +1,16 @@
+- name: Include vm env var
+  include_vars:
+    file: "Environments.yml"
+
+- name: join domain
+  win_domain_membership:
+    dns_domain_name: "{{ forest.domain_name }}"
+    domain_admin_user: "{{ forest.domain_admin_user }}"
+    domain_admin_password: "{{ ansible_password }}"
+    state: domain
+  register: domain_state
+
+- name: Reboot after joining
+  win_reboot:
+    msg: "Joining domain. Rebooting..."
+  when: domain_state.reboot_required

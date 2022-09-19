@@ -74,3 +74,6 @@ forest:
   upstream_dns_2: 8.8.8.8
   reverse_dns_zone: "10.1.1.0/24"
   ntp_servers: "0.jp.pool.ntp.org,1.jp.pool.ntp.org"
+  domain_admin_user: "administrator@ad.local"
+  reverse_dns_zone_name: "1.1.10.in-addr.arpa"
+

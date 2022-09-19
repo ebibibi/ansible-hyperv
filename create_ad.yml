@@ -1,18 +1,30 @@
 ---
-#- name: Provision VM
-#  hosts: nestedhyperv
-#  gather_facts: no
-#  tasks:
-#    - import_tasks: tasks/prov_vm.yml
+- name: Provision VM
+  hosts: nestedhyperv
+  gather_facts: no
+  tasks:
+    - import_tasks: tasks/prov_vm.yml
 
-#- name: Congifure VM
-#  hosts: windows
-#  gather_facts: no
-#  tasks:
-#    - import_tasks: tasks/config_vm.yml
+- name: Congifure VM
+  hosts: windows
+  gather_facts: no
+  tasks:
+    - import_tasks: tasks/config_vm.yml
 
 - name: Create AD Forest
-  hosts: [firstDC]
+  hosts: firstDC
   gather_facts: no
   tasks:
     - import_tasks: tasks/create_ad_forest.yml
+
+- name: Join domain
+  hosts: domainMembers
+  gather_facts: no
+  tasks:
+    - import_tasks: tasks/join_domain.yml
+
+- name: Add Domain Controllers
+  hosts: DCs
+  gather_facts: no
+  tasks:
+    - import_tasks: tasks/add_ad_dcs.yml

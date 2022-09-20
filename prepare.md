@@ -65,4 +65,4 @@ Hyper-Vのホストはどのように準備しても構いませんが、検証�
 ## playbook実行方法(の例)
 - WSL2を起動
 - cd /mnt/e/repos/ansible-hyperv (※gitレポジトリまで移動)
-- ansible-playbook -i hosts create_vm.yml
+- ansible-playbook -i hosts create_ad.yml

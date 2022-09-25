@@ -7,6 +7,10 @@
 Hyper-Vのホストはどのように準備しても構いませんが、検証用環境構築の目的での利用であればNested Hyper-Vを有効化したホストを利用するのが環境依存部分がなくなりお勧めです。下記動画を参考にしてください。
 
 * [Nested Hyper\-Vで検証基盤を準備 / 企業でよくあるWindows, M365環境を構築してみるシリーズ Part1 \- YouTube](https://www.youtube.com/watch?v=5rG_3MxpFzQ&list=PLas-S4LkjlLr27Dy5x80qUNvVFCPDb9fX&index=3)
+## Windows上でWinRMを有効化し、Ansibleで管理可能にする(PowerShellコンソールで実行)
+
+    Invoke-WebRequest -Uri  https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1 -OutFile ConfigureRemotingForAnsible.ps1
+    powershell -ExecutionPolicy RemoteSigned .\ConfigureRemotingForAnsible.ps1
 
 ## Ansible実行環境をWSL上に準備する(PowerShellコンソールで実行)
 

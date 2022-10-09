@@ -2,7 +2,7 @@ vms:
   - type: windows
     name: "dc01"
 
-    cpu: 2   
+    cpu: 2
     memory: 4096MB
 
     network:
@@ -10,8 +10,8 @@ vms:
       netmask: 255.255.255.0
       gateway: 10.1.1.254
       dns: 192.168.1.1
-      
-    network_switch: 'Nested NAT Switch' 
+
+    network_switch: 'Nested NAT Switch'
 
     src_vhd: "E:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
     dest_vhd: "E:\\Hyper-V\\Virtual hard disks\\dc01.vhdx"
@@ -19,7 +19,7 @@ vms:
   - type: windows
     name: "dc02"
 
-    cpu: 2   
+    cpu: 2
     memory: 4096MB
 
     network:
@@ -27,8 +27,8 @@ vms:
       netmask: 255.255.255.0
       gateway: 10.1.1.254
       dns: 10.1.1.1
-      
-    network_switch: 'Nested NAT Switch' 
+
+    network_switch: 'Nested NAT Switch'
 
     src_vhd: "E:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
     dest_vhd: "E:\\Hyper-V\\Virtual hard disks\\dc02.vhdx"
@@ -36,7 +36,7 @@ vms:
   - type: windows
     name: "win10"
 
-    cpu: 2   
+    cpu: 2
     memory: 4096MB
 
     network:
@@ -44,8 +44,8 @@ vms:
       netmask: 255.255.255.0
       gateway: 10.1.1.254
       dns: 10.1.1.1
-      
-    network_switch: 'Nested NAT Switch' 
+
+    network_switch: 'Nested NAT Switch'
 
     src_vhd: "E:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win10-gold.vhdx"
     dest_vhd: "E:\\Hyper-V\\Virtual hard disks\\win10.vhdx"
@@ -53,7 +53,7 @@ vms:
   - type: windows
     name: "win11"
 
-    cpu: 2   
+    cpu: 2
     memory: 4096MB
 
     network:
@@ -61,8 +61,8 @@ vms:
       netmask: 255.255.255.0
       gateway: 10.1.1.254
       dns: 10.1.1.1
-      
-    network_switch: 'Nested NAT Switch' 
+
+    network_switch: 'Nested NAT Switch'
 
     src_vhd: "E:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win11-gold.vhdx"
     dest_vhd: "E:\\Hyper-V\\Virtual hard disks\\win11.vhdx"

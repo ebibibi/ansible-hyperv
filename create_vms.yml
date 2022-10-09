@@ -1,6 +1,6 @@
 ---
 - name: Provision VM
-  hosts: nestedhyperv
+  hosts: hyperv
   gather_facts: no
   tasks:
     - import_tasks: tasks/prov_vm.yml

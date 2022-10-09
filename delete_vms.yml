@@ -1,6 +1,6 @@
 ---
 - name: Delete VM
-  hosts: nestedhyperv
+  hosts: hyperv
   gather_facts: no
 
   tasks:

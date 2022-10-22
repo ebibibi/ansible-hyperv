@@ -27,7 +27,7 @@ Ansibleを用いてHyper-V + WindowsでInfrastructure as Codeを実現します�
 
 ## VM削除
 
-    ansible-playbook -i hosts delete_vms.yml
+    ansible-playbook -i hosts remove_vms.yml
 
 ## ActiveDirectory環境作成
 

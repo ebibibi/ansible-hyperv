@@ -50,6 +50,24 @@ vms:
     src_vhd: "E:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
     dest_vhd: "E:\\Hyper-V\\Virtual hard disks\\win2022.vhdx"
 
+  - type: windows
+    name: "win10"
+
+    cpu: 2
+    memory: 4096MB
+
+    network:
+      ip: 10.1.1.4
+      netmask: 255.255.255.0
+      gateway: 10.1.1.254
+      dns: 10.1.1.1
+
+    network_switch: 'Nested NAT Switch'
+
+    src_vhd: "E:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win10-gold.vhdx"
+    dest_vhd: "E:\\Hyper-V\\Virtual hard disks\\win10.vhdx"
+
+
 forest:
   domain_name: "dev1.ebisuda.net"
   recovery_password: 'NestedHypervnoP@ssw0rd'

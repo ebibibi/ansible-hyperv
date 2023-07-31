@@ -17,7 +17,7 @@ vms:
     dest_vhd: "E:\\Hyper-V\\Virtual hard disks\\dc01.vhdx"
 
   - type: windows
-    name: "dc02"
+    name: "adcon01"
 
     cpu: 2
     memory: 4096MB
@@ -31,10 +31,10 @@ vms:
     network_switch: 'Nested NAT Switch'
 
     src_vhd: "E:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
-    dest_vhd: "E:\\Hyper-V\\Virtual hard disks\\dc02.vhdx"
+    dest_vhd: "E:\\Hyper-V\\Virtual hard disks\\adcon01.vhdx"
 
   - type: windows
-    name: "win10"
+    name: "win2022"
 
     cpu: 2
     memory: 4096MB
@@ -47,33 +47,16 @@ vms:
 
     network_switch: 'Nested NAT Switch'
 
-    src_vhd: "E:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win10-gold.vhdx"
-    dest_vhd: "E:\\Hyper-V\\Virtual hard disks\\win10.vhdx"
-
-  - type: windows
-    name: "win11"
-
-    cpu: 2
-    memory: 4096MB
-
-    network:
-      ip: 10.1.1.4
-      netmask: 255.255.255.0
-      gateway: 10.1.1.254
-      dns: 10.1.1.1
-
-    network_switch: 'Nested NAT Switch'
-
-    src_vhd: "E:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win11-gold.vhdx"
-    dest_vhd: "E:\\Hyper-V\\Virtual hard disks\\win11.vhdx"
+    src_vhd: "E:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
+    dest_vhd: "E:\\Hyper-V\\Virtual hard disks\\win2022.vhdx"
 
 forest:
-  domain_name: "ad.local"
+  domain_name: "v4h3l.onmicrosoft.com"
   recovery_password: 'NestedHypervnoP@ssw0rd'
   upstream_dns_1: 192.168.1.1
   upstream_dns_2: 8.8.8.8
   reverse_dns_zone: "10.1.1.0/24"
   ntp_servers: "0.jp.pool.ntp.org,1.jp.pool.ntp.org"
-  domain_admin_user: "administrator@ad.local"
+  domain_admin_user: "administrator@v4h3l.onmicrosoft.com"
   reverse_dns_zone_name: "1.1.10.in-addr.arpa"
 

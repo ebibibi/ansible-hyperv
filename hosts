@@ -3,9 +3,8 @@ nestedhyperv
 
 [windows]
 10.1.1.1 computername=dc01
-10.1.1.2 computername=dc02
-10.1.1.3 computername=win10
-10.1.1.4 computername=win11
+10.1.1.2 computername=adcon01
+10.1.1.3 computername=win2022
 
 [firstDC]
 10.1.1.1
@@ -13,8 +12,7 @@ nestedhyperv
 [domainMembers]
 10.1.1.2
 10.1.1.3
-10.1.1.4
 
-[DCs]
-10.1.1.2
+#[DCs]
+#10.1.1.2
 

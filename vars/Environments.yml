@@ -69,12 +69,12 @@ vms:
 
 
 forest:
-  domain_name: "ebisuda.net"
+  domain_name: "dev1.ebisuda.net"
   recovery_password: 'NestedHypervnoP@ssw0rd'
   upstream_dns_1: 192.168.1.1
   upstream_dns_2: 8.8.8.8
   reverse_dns_zone: "10.1.1.0/24"
   ntp_servers: "0.jp.pool.ntp.org,1.jp.pool.ntp.org"
-  domain_admin_user: "administrator@ebisuda.net"
+  domain_admin_user: "administrator@dev1.ebisuda.net"
   reverse_dns_zone_name: "1.1.10.in-addr.arpa"
 

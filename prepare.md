@@ -9,7 +9,7 @@ Hyper-Vのホストはどのように準備しても構いませんが、検証�
 * [Nested Hyper\-Vで検証基盤を準備 / 企業でよくあるWindows, M365環境を構築してみるシリーズ Part1 \- YouTube](https://www.youtube.com/watch?v=5rG_3MxpFzQ&list=PLas-S4LkjlLr27Dy5x80qUNvVFCPDb9fX&index=3)
 ## Windows上でWinRMを有効化し、Ansibleで管理可能にする(PowerShellコンソールで実行)
 
-    Invoke-WebRequest -Uri  https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1 -OutFile ConfigureRemotingForAnsible.ps1
+    Invoke-WebRequest -Uri https://gist.githubusercontent.com/ebibibi/e0ad7a2401442d03a128fb359f5e6411/raw/1e9a95ad094a11ff3bda1bb5a17985b2c9812cbf/ConfigureRemotingForAnsible.ps1 -OutFile ConfigureRemotingForAnsible.ps1
     powershell -ExecutionPolicy RemoteSigned .\ConfigureRemotingForAnsible.ps1
 
 ## Ansible実行環境をWSL上に準備する(PowerShellコンソールで実行)
@@ -54,7 +54,7 @@ Hyper-Vのホストはどのように準備しても構いませんが、検証�
 
 ### (ホストではなくマスターにするVM上の操作)Windows上でWinRMを有効化し、Ansibleで管理可能にする(PowerShellコンソールで実行)
 
-    Invoke-WebRequest -Uri  https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1 -OutFile ConfigureRemotingForAnsible.ps1
+    Invoke-WebRequest -Uri  https://gist.githubusercontent.com/ebibibi/e0ad7a2401442d03a128fb359f5e6411/raw/1e9a95ad094a11ff3bda1bb5a17985b2c9812cbf/ConfigureRemotingForAnsible.ps1 -OutFile ConfigureRemotingForAnsible.ps1
     powershell -ExecutionPolicy RemoteSigned .\ConfigureRemotingForAnsible.ps1
 
 ### (ホストではなくマスターにするVM上の操作)自動応答ファイルをc:\windows\system32\sysprepに配置したうえでsysprep実行

@@ -46,9 +46,11 @@ Hyper-Vのホストはどのように準備しても構いませんが、検証�
 ## Windows Serverのsysprep実行済みイメージを作成する
 
 コマンドのみでというわけにもいかないので、下記のYoutube動画をご覧ください。
-
 * [sysprepでWindows Serverの雛形を作成する / 企業でよくあるWindows, M365環境を構築してみるシリーズ Part2 \- YouTube](https://www.youtube.com/watch?v=m5pFUegs6CY&list=PLas-S4LkjlLr27Dy5x80qUNvVFCPDb9fX&index=3)
 * [ADK, SIMを使って応答ファイルを作成しsysprep実行後の構成を自動化する / 企業でよくあるWindows, M365環境を構築してみるシリーズ Part3 \- YouTube](https://www.youtube.com/watch?v=wOHfoPphjMY&list=PLas-S4LkjlLr27Dy5x80qUNvVFCPDb9fX&index=4)
+
+応答ファイルは下記が使えます。
+* https://gist.github.com/ebibibi/7c22b53ba6d8d9742a415994c5592bfc
 
 ### Windows上でWinRMを有効化し、Ansibleで管理可能にする(PowerShellコンソールで実行)
 

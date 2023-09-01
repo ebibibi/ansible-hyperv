@@ -52,12 +52,12 @@ Hyper-Vのホストはどのように準備しても構いませんが、検証�
 応答ファイルは下記が使えます。
 * https://gist.github.com/ebibibi/7c22b53ba6d8d9742a415994c5592bfc
 
-### Windows上でWinRMを有効化し、Ansibleで管理可能にする(PowerShellコンソールで実行)
+### (ホストではなくマスターにするVM上の操作)Windows上でWinRMを有効化し、Ansibleで管理可能にする(PowerShellコンソールで実行)
 
     Invoke-WebRequest -Uri  https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1 -OutFile ConfigureRemotingForAnsible.ps1
     powershell -ExecutionPolicy RemoteSigned .\ConfigureRemotingForAnsible.ps1
 
-### 自動応答ファイルをc:\windows\system32\sysprepに配置したうえでsysprep実行
+### (ホストではなくマスターにするVM上の操作)自動応答ファイルをc:\windows\system32\sysprepに配置したうえでsysprep実行
 
     # Win2022_answerfile.xmlをc:\windows\system32\sysprepにコピー
     c:\windows\system32\sysprep\sysprep.exe /generalize /oobe /shutdown /unattend:win2022_answerfile.xml

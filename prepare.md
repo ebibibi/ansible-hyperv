@@ -30,6 +30,10 @@ Hyper-Vのホストはどのように準備しても構いませんが、検証�
     pip install pywinrm
     sudo apt install ansible
 
+## Ansibleへのコミュニティモジュールの追加
+    
+    ansible-galaxy collection install community.windows
+
 ## boxstarterを使ったgit, vscodeのインストール(PowerShellコンソールで実行)
 
     . { iwr -useb https://boxstarter.org/bootstrapper.ps1 } | iex; Get-Boxstarter -Force

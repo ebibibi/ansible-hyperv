@@ -25,3 +25,9 @@
       path: "{{item.dest_vhd}}"
       state: absent  
     with_items: "{{ vms }}"
+  
+  - name: Remove vhd
+    win_file:
+      path: "{{item.d_diskpath}}"
+      state: absent  
+    with_items: "{{ vms }}"

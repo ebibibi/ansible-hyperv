@@ -64,9 +64,22 @@ options:
   diskpath:
     description:
       - Specify path of VHD/VHDX file for VM
-	  - If the file exists it will be attached, if not then a new one will be created
+  	    - If the file exists it will be attached, if not then a new one will be created
     require: false
     default: null
+  d_diskpath:
+    description:
+      - Specify path of VHD/VHDX file for D drive of VM
+	      - If the file exists it will be attached, if not then a new one will be created
+    require: false
+    default: null
+  d_disksize:
+    description:
+      - Specify size of new VHD/VHDX file for D drive of VM
+    require: false
+    default: 500GB
+      
+
 '''
 
 EXAMPLES = '''

@@ -1,3 +1,7 @@
+- name: Include vm env var
+  include_vars:
+    file: "Environments.yml"
+
 # change vm name
 - name: Change VM name
   win_hostname:
@@ -7,6 +11,22 @@
 - name: debug res
   debug:
     msg: "{{ res }}"
+
+- name: Initialize a disk
+  community.windows.win_initialize_disk:
+    disk_number: 1
+
+- name: Create a partition with drive letter D
+  community.windows.win_partition:
+    drive_letter: D
+    partition_size: -1
+    disk_number: 1
+
+- name: Full format the newly created partition as NTFS and label it
+  community.windows.win_format:
+    drive_letter: D
+    file_system: NTFS
+    full: True
 
 - name: Reboot
   win_reboot:

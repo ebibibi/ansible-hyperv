@@ -20,6 +20,8 @@
 #Requires -Module Ansible.ModuleUtils.Legacy
 
 $params = Parse-Args $args;
+$module.Result
+
 $result = @{};
 Set-Attr $result "changed" $false;
 
@@ -31,6 +33,8 @@ $generation = Get-Attr -obj $params -name generation -default 2
 $network_switch = Get-Attr -obj $params -name network_switch -default $null
 
 $diskpath = Get-Attr -obj $params -name diskpath -default $null
+$d_diskpath = Get-Attr -obj $params -name d_diskpath -default $null
+$d_disksize = Get-Attr -obj $params -name d_disksize -default "500GB"
 
 $showlog = Get-Attr -obj $params -name showlog -default "false" | ConvertTo-Bool
 $state = Get-Attr -obj $params -name state -default "present"
@@ -69,17 +73,28 @@ Function VM-Create {
         } else {
           $cmd += " -NewVHDPath '$diskpath'"
         }
-      }
-
-      # Need to chain these
-      $results = invoke-expression $cmd
-      $results = invoke-expression "Set-VMProcessor $name -Count $cpu"
-
-      $result.changed = $true
-      } else {
-        $result.changed = $false
-      }
     }
+
+    # Need to chain these
+    $results = invoke-expression $cmd
+    $results = invoke-expression "Set-VMProcessor $name -Count $cpu"
+
+    if ($d_diskpath) {
+        #If VHD already exists then attach it, if not create it
+        if (!(Test-Path $d_diskpath)) {
+          #createVHD
+          invoke-expression "New-VHD -Path '$d_diskpath' -SizeBytes $d_disksize"
+        }
+        #attach
+        $results = invoke-expression "Add-VMHardDiskDrive -VMName $name -ControllerType SCSI -Path '$d_diskpath' -ControllerLocation 1 -ControllerNumber 0"
+    }
+
+    $result.changed = $true
+    } else {
+      $result.changed = $false
+    }
+
+}
 
     Function VM-Delete {
       $CheckVM = Get-VM -name $name -ErrorAction SilentlyContinue

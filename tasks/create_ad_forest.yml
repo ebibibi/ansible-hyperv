@@ -41,10 +41,10 @@
 - name: Create Domain
   win_domain:
     create_dns_delegation: no
-    database_path: C:\Windows\NTDS
+    database_path: D:\NTDS
     dns_domain_name: "{{ forest.domain_name }}"
     safe_mode_password: "{{ forest.recovery_password }}"
-    sysvol_path: C:\Windows\SYSVOL
+    sysvol_path: D:\SYSVOL
   register: ad
 
 - name: reboot server

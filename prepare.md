@@ -76,3 +76,9 @@ Hyper-Vのホストはどのように準備しても構いませんが、検証�
 - WSL2を起動
 - cd /mnt/e/repos/ansible-hyperv (※gitレポジトリまで移動)
 - ansible-playbook -i hosts create_ad.yml
+
+# トラブルシューティング
+
+## Windows Serverにansibleから接続できない
+- WinRMが有効化されていることを確認してください。
+- group_vars/all.ymlに接続で利用するユーザー名、パスワード等が記載されていますので環境に合わせて書き換えてください。

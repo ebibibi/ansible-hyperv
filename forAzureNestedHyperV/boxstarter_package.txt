@@ -1,0 +1,6 @@
+Set-WindowsExplorerOptions -EnableShowHiddenFilesFoldersDrives -EnableShowProtectedOSFiles -EnableShowFileExtensions
+Enable-RemoteDesktop
+Disable-UAC
+cinst Microsoft-Hyper-V-All -source windowsFeatures
+cinst git
+choco install -y python git vscode

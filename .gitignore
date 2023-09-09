@@ -1,3 +1,4 @@
 *.exe
 *.retry
 *.log
+forAzureNestedHyperV/sas.txt

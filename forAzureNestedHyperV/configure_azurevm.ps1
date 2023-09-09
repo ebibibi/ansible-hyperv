@@ -1,4 +1,4 @@
-$boxstarter_packageurl = "https://gist.githubusercontent.com/ebibibi/b5d6204297b634dbd0334274746b7c71/raw/boxstarter.txt"
+$boxstarter_packageurl = "https://raw.githubusercontent.com/ebibibi/ansible-hyperv/master/forAzureNestedHyperV/boxstarter_package.txt"
 $repo_path = "C:\ansible-hyperv"
 $repo = "https://github.com/ebibibi/ansible-hyperv.git"
 $pull_golden_image_path = "E:\golden_images"

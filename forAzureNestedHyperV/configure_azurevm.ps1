@@ -2,7 +2,7 @@ $boxstarter_packageurl = "https://raw.githubusercontent.com/ebibibi/ansible-hype
 $repo_path = "C:\ansible-hyperv"
 $repo = "https://github.com/ebibibi/ansible-hyperv.git"
 $pull_golden_image_path = "E:\golden_images"
-$golden_images_containerUrl = "https://goldenimagesforebi.blob.core.windows.net/goldenimage"
+$golden_images_containerUrl = "https://goldenimagesforebi.blob.core.windows.net/goldenimages"
 $sasTokenFile = ".\sas.txt" # SASトークンが保存されているファイルへのパスを指定します
 
 . { Invoke-WebRequest -useb https://boxstarter.org/bootstrapper.ps1 } | Invoke-Expression; Get-Boxstarter -Force

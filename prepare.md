@@ -70,6 +70,19 @@ Azure上のホストの場合にはIPアドレスを割り当てるNICを間違�
 
 ![](image-1.png)
 
+ゲストVMを外部と通信できるようにするにはルーティングを有効にしてあげるのが簡単です。
+
+![](image-2.png)
+
+![](image-3.png)
+
+![](image-4.png)
+
+![](image-5.png)
+
+![](image-6.png)
+
+
 ## sysprep実行済みイメージを任意の場所に配置
 
 配置した場所を `Environments.yml` 上に記載してください。

@@ -51,7 +51,7 @@ Hyper-Vのホストはどのように準備しても構いませんが、検証�
 
 仮想スイッチを1つ作成し、任意の名前を付けます。WSLがすでに1つ作成していますがそれとは別で作成すると良いでしょう。名前は`Environments.yml`の記述と一致させる必要があります。
 
-![](image.png)
+![](images/image.png)
 
 サンプルでは`Nested NAT Switch`という名前になっています。
 
@@ -68,11 +68,11 @@ Azure上のホストの場合にはIPアドレスを割り当てるNICを間違�
 
 `Nested NAT Switch`という名前でスイッチを作成したのであれば`vEthernet (Nested NAT Switch)`という名前のNICをVMと通信できるように構成します。
 
-![](image-1.png)
+![](images/image-1.png)
 
 ゲストVMを外部と通信できるようにするにはルーティングを有効にしてあげる必要があります。これはRRASで構成するのが正しいのではと思いますが、RRASのルーティングはWindows Server 2016以降で上手く動作しない模様です。その代わりにレジストリを設定することでルーティングを有効化可能です。
 
-![レジストリを変更してルーティングを有効化する](image-11.png)
+![レジストリを変更してルーティングを有効化する](images/image-11.png)
 
 「HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\IPEnableRouter」を「1」に設定します。
 
@@ -82,15 +82,15 @@ Azure上のホストの場合にはIPアドレスを割り当てるNICを間違�
 
 あらかじめHyper-Vホストが保持するNICのIP構成を静的にし、IPフォワーディングを有効化しておきます。
 
-![](image-7.png)
+![](images/image-7.png)
 
 そのうえで、ルートテーブルを作成します。
 
-![](image-9.png)
+![](images/image-9.png)
 
 サブネットに割り当てます。
 
-![](image-10.png)
+![](images/image-10.png)
 
 以上でルーティングが可能です。
 

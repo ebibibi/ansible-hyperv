@@ -15,18 +15,21 @@
 - name: Initialize a disk
   community.windows.win_initialize_disk:
     disk_number: 1
+  when: 'd_diskpath'
 
 - name: Create a partition with drive letter D
   community.windows.win_partition:
     drive_letter: D
     partition_size: -1
     disk_number: 1
+  when: 'd_diskpath'
 
 - name: Full format the newly created partition as NTFS and label it
   community.windows.win_format:
     drive_letter: D
     file_system: NTFS
     full: True
+    when: 'd_diskpath'
 
 - name: Reboot
   win_reboot:

@@ -9,8 +9,6 @@
   with_items: "{{ vms }}"
   register: file_info
 
-#- debug: var=file_info.results
-
 - name: Clone vhdx 
   win_copy:
     src: "{{item.item.src_vhd}}"
@@ -27,8 +25,8 @@
     memory: "{{item.memory}}"
     network_switch: "{{item.network_switch}}"
     diskpath: "{{item.dest_vhd}}"
-    d_diskpath: "{{item.d_diskpath}}"
-    d_disksize: "{{item.d_disksize}}"
+    d_diskpath: "{{ item.d_diskpath | default('') }}"
+    d_disksize: "{{ item.d_disksize | default('') }}"
     state: present
   with_items: "{{ vms }}"
   register: new_vms

@@ -9,16 +9,15 @@ nestedhyperv
 10.1.1.5 computername=arc-iisdemo-wac
 
 
-[firstDC]
-10.1.1.1
+#[firstDC]
+#10.1.1.1
 
-[domainMembers]
-10.1.1.2
-10.1.1.3
-10.1.1.4
-10.1.1.5
-10.1.1.8
-
-[DCs]
-10.1.1.2
+#[domainMembers]
+#10.1.1.2
+#10.1.1.3
+#10.1.1.4
+#10.1.1.5
+#
+#[DCs]
+#10.1.1.2
 

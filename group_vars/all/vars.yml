@@ -1,0 +1,17 @@
+defaut_generation: 2
+
+ansible_user: Administrator
+ansible_password: "{{ vault_ansible_password }}"
+ansible_port: 5986
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+
+arc_onboard_service_principal_secret: "{{ vault_arc_onboard_service_principal_secret }}"
+
+azure:
+  service_principal_id: '493cae8a-c9a6-4f8b-9112-9b4a637ff943'
+  service_principal_secret: "{{ arc_onboard_service_principal_secret }}"
+  resource_group: 'ArcEnabledServers'
+  tenant_id: '7b54e7bc-acb0-4a9b-ad82-7421b9e4e2d9'
+  subscription_id: 'b0f2ddcb-c22b-4728-89b3-26e90a494ae4'
+  location: 'japaneast'

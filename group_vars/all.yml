@@ -1,7 +1,0 @@
-defaut_generation: 2
-
-ansible_user: Administrator
-ansible_password: NestedHypervnoP@ssw0rd
-ansible_port: 5986
-ansible_connection: winrm
-ansible_winrm_server_cert_validation: ignore

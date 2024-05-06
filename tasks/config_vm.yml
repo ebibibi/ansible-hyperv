@@ -15,25 +15,64 @@
 - name: Initialize a disk
   community.windows.win_initialize_disk:
     disk_number: 1
-  when: 'd_diskpath'
+  when: 'd_diskpath is defined'
 
 - name: Create a partition with drive letter D
   community.windows.win_partition:
     drive_letter: D
     partition_size: -1
     disk_number: 1
-  when: 'd_diskpath'
+  when: 'd_diskpath is defined'
 
 - name: Full format the newly created partition as NTFS and label it
   community.windows.win_format:
     drive_letter: D
     file_system: NTFS
     full: True
-    when: 'd_diskpath'
+  when: 'd_diskpath is defined'
 
 - name: Reboot
   win_reboot:
   when: res.reboot_required
+
+- name: "パブリック エンドポイント 接続を使用して Azure Arc 対応サーバーに Windowsサーバーをオンボードする"
+  vars:
+    azure:
+      service_principal_id: '493cae8a-c9a6-4f8b-9112-9b4a637ff943'
+      service_principal_secret: ''
+      resource_group: 'ArcEnabledServers'
+      tenant_id: '7b54e7bc-acb0-4a9b-ad82-7421b9e4e2d9'
+      subscription_id: 'b0f2ddcb-c22b-4728-89b3-26e90a494ae4'
+      location: 'japaneast'
+  tasks:
+- name: Windows サーバーに接続コンピューター エージェントをダウンロードする
+  win_get_url:
+  url: https://aka.ms/AzureConnectedMachineAgent
+  dest: C:\AzureConnectedMachineAgent.msi
+  when: (ansible_os_family == 'Windows') and (not azcmagent_win_downloaded.stat.exists)
+
+- name: Windows サーバーに接続コンピューター エージェントをインストールする
+  win_package:
+  path: C:\AzureConnectedMachineAgent.msi
+  when: (ansible_os_family == 'Windows') and (not azcmagent_win_downloaded.stat.exists)
+
+- name: 接続コンピューター エージェントが既に Windows に接続されているかどうかを確認する
+  win_command: azcmagent check
+  register: azcmagent_win_connected
+  when: ansible_os_family == 'Windows'
+  ignore_errors: yes
+  failed_when: (azcmagent_win_connected.rc not in [ 0, 16 ])
+  changed_when: False
+
+- name: Windows 台のサーバー上の接続コンピューター エージェントを Azure Arc に接続する
+  win_shell: '& $env:ProgramFiles\AzureConnectedMachine\Agentazcmagent.exe connect --service-principal-id "{{ azure.service_principal_id }}" --service-principal-secret "{{ azure.service_principal_secret }}" --resource-group "{{ azure.resource_group }}" --tenant-id "{{ azure.tenant_id }}" --location "{{ azure.location }}" --subscription-id "{{ azure.subscription_id }}"'
+  when: (ansible_os_family == 'Windows') and (azcmagent_win_connected.rc is defined and azcmagent_win_connected.rc != 0)
+
+- name: Reboot
+  win_reboot:
+  when: res.reboot_required
+
+
 
 #- name: OpsRampエージェントインストール
 #  win_package:

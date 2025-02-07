@@ -182,7 +182,7 @@ group_vars/all/vault.ymlというファイルを新規に作成し、そこにva
 
 ## playbook実行方法(の例)
 - WSL2を起動
-- cd /mnt/e/repos/ansible-hyperv (※gitレポジトリまで移動)
+- cd /mnt/c/repos/ansible-hyperv（※gitレポジトリまで移動）
 - ansible-playbook -i hosts create_ad.yml
 
 # トラブルシューティング

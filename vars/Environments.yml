@@ -35,7 +35,7 @@ vms:
 
 forest:
   domain_name: "dev1.ebisuda.net"
-  recovery_password: 'NestedHypervnoP@ssw0rd'
+  recovery_password: {{ vault_ansible_password }}
   upstream_dns_1: 192.168.1.1
   upstream_dns_2: 8.8.8.8
   reverse_dns_zone: "10.1.1.0/24"

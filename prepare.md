@@ -166,16 +166,22 @@ sysprep実行済みのイメージの作成に関して不明点あれば下記�
 
 group_vars/all/vault.ymlというファイルを新規に作成し、そこにvault_ansible_passwordを定義します。パスワードはご自身のものに変更してください。
 
-    echo "ansible_password: my_secret_password" > group_vars/all/vault.yml
+    echo "vault_ansible_password: my_secret_password" > group_vars/all/vault.yml
+    echo "vault_host_password: my_secret_password" >> group_vars/all/vault.yml
 
 次にこのファイルを暗号化します。Ubuntu（WSL）上で操作します。
 
     ansible-vault encrypt group_vars/all/vault.yml
 
-これで暗号化されます。ここで定義しているansible_passwordは下記のようにgroup_vars/all/vars.yml内で参照されています。
+これで暗号化されます。ここで定義しているvault_ansible_passwordは下記のようにgroup_vars/all/vars.yml内で参照されています。
 
     ansible_user: Administrator
     ansible_password: "{{ vault_ansible_password }}"
+
+また、サンプルはHyper-Vホストのパスワードは別という例になっています。これはgroup_vars/hyperv.yml内で参照されています。
+
+    ansible_user: Administrator
+    ansible_password: "{{ vault_host_password }}"
 
 # hostsへの追加
 ansibleでWindowsホストにアクセスするためのIPアドレスは環境によって異なります。

@@ -10,7 +10,7 @@
        state=present
 
 - name: Promote to DC
-  win_domain_controller:
+  microsoft.ad.domain_controller:
     dns_domain_name: "{{ forest.domain_name }}"
     domain_admin_user: "{{ forest.domain_admin_user }}"
     domain_admin_password: "{{ ansible_password }}"

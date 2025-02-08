@@ -3,7 +3,7 @@
     file: "Environments.yml"
 
 - name: join domain
-  win_domain_membership:
+  microsoft.ad.membership:
     dns_domain_name: "{{ forest.domain_name }}"
     domain_admin_user: "{{ forest.domain_admin_user }}"
     domain_admin_password: "{{ ansible_password }}"

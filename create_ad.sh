@@ -1,1 +1,0 @@
-ansible-playbook -i hosts create_ad.yml

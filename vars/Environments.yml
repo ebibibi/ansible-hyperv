@@ -9,12 +9,15 @@ vms:
       ip: 10.1.1.1
       netmask: 255.255.255.0
       gateway: 10.1.1.254
-      dns: 192.168.1.1
+      dns: 10.1.1.1
 
     network_switch: 'Nested NAT Switch'
 
-    src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2019-gold.vhdx"
+    src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
     dest_vhd: "D:\\Hyper-V\\Virtual hard disks\\dc01.vhdx"
+
+    d_diskpath: "D:\\Hyper-V\\Virtual hard disks\\dc01_D.vhdx"
+    d_disksize: 500GB
 
   - type: windows
     name: "dc02"
@@ -26,17 +29,37 @@ vms:
       ip: 10.1.1.2
       netmask: 255.255.255.0
       gateway: 10.1.1.254
-      dns: 192.168.1.1
+      dns: 10.1.1.1
 
     network_switch: 'Nested NAT Switch'
 
-    src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2019-gold.vhdx"
+    src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
     dest_vhd: "D:\\Hyper-V\\Virtual hard disks\\dc02.vhdx"
+
+    d_diskpath: "D:\\Hyper-V\\Virtual hard disks\\dc02_D.vhdx"
+    d_disksize: 500GB
+
+  - type: windows
+    name: "win11"
+
+    cpu: 2
+    memory: 10240MB
+
+    network:
+      ip: 10.1.1.3
+      netmask: 255.255.255.0
+      gateway: 10.1.1.254
+      dns: 172.25.32.1
+
+    network_switch: 'Nested NAT Switch'
+
+    src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win11-gold.vhdx"
+    dest_vhd: "D:\\Hyper-V\\Virtual hard disks\\win11.vhdx"
 
 forest:
   domain_name: "dev1.ebisuda.net"
-  recovery_password: {{ vault_ansible_password }}
-  upstream_dns_1: 192.168.1.1
+  recovery_password: "{{ vault_ansible_password }}"
+  upstream_dns_1: 172.25.32.1
   upstream_dns_2: 8.8.8.8
   reverse_dns_zone: "10.1.1.0/24"
   ntp_servers: "0.jp.pool.ntp.org,1.jp.pool.ntp.org"

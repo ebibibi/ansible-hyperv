@@ -1,7 +1,7 @@
 defaut_generation: 2
 
 ansible_user: Administrator
-ansible_password: "{{ vault_ansible_password }}"
+ansible_password: "{{ vault_host_password }}"
 ansible_port: 5986
 ansible_winrm_scheme: https
 ansible_connection: winrm

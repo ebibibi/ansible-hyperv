@@ -23,15 +23,15 @@ Ansibleを用いてHyper-V + WindowsでInfrastructure as Codeを実現します�
 1. `hosts` に生成するVMのIPアドレスでエントリを追加します。
 1. `create_vms.yml` を実行することで仮想マシンが実際に作成されます。
 
-    ansible-playbook -i hosts create_vms.yml
+    ansible-playbook -i hosts create_vms.yml --ask-vault-pass
 
 ## VM削除
 
-    ansible-playbook -i hosts remove_vms.yml
+    ansible-playbook -i hosts remove_vms.yml --ask-vault-pass
 
 ## ActiveDirectory環境作成
 
-    ansible-playbook -i hosts create_ad.yml
+    ansible-playbook -i hosts create_ad.yml --ask-vault-pass
 
 ## より詳しい利用方法
 

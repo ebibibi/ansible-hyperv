@@ -104,6 +104,8 @@ PowerShellで実行する場合には下記のコマンドを実行します。
 
     Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters" -Name "IPEnableRouter" -Value 1
 
+Windows Server 2025では上記の設定ではルーティングは有効になりませんでした。代わりにというか本来通り「ルーティングとリモートアクセス」でルーティングを有効化する事が可能です。
+
 また、このように構成するとVMが存在しているネットワークは孤立したものになります。Hyper-Vホストでだけルーティングを有効にしてもその先にいる他のホストやネットワーク機器はVMが存在しているネットワークの事は知りません。ですので、通信するホストにスタティックルートを記載するなりルーターのルーティングテーブルを操作するなりしないといけません。
 
 具体的にはたとえばAzureであればスタティックルートを作成します。
@@ -166,24 +168,45 @@ sysprep実行済みのイメージの作成に関して不明点あれば下記�
 
 group_vars/all/vault.ymlというファイルを新規に作成し、そこにvault_ansible_passwordを定義します。パスワードはご自身のものに変更してください。
 
-    echo "ansible_password: my_secret_password" > group_vars/all/vault.yml
+    echo "vault_ansible_password: my_secret_password" > group_vars/all/vault.yml
+    echo "vault_host_password: my_secret_password" >> group_vars/all/vault.yml
 
 次にこのファイルを暗号化します。Ubuntu（WSL）上で操作します。
 
     ansible-vault encrypt group_vars/all/vault.yml
 
-これで暗号化されます。ここで定義しているansible_passwordは下記のようにgroup_vars/all/vars.yml内で参照されています。
+これで暗号化されます。ここで定義しているvault_ansible_passwordは下記のようにgroup_vars/all/vars.yml内で参照されています。
 
     ansible_user: Administrator
     ansible_password: "{{ vault_ansible_password }}"
 
+また、サンプルはHyper-Vホストのパスワードは別という例になっています。これはgroup_vars/hyperv.yml内で参照されています。
+
+    ansible_user: Administrator
+    ansible_password: "{{ vault_host_password }}"
+
+# hostsへの追加
+ansibleでWindowsホストにアクセスするためのIPアドレスは環境によって異なります。
+なので、ここではhypervhostという名称でhostsに書き込んでしまう事にします。
+
+まずWindows上でipconfigを実行し、WSLのNICに割り当てられているIPアドレスを確認してください。
+典型的には'イーサネット アダプター vEthernet (WSL (Hyper-V firewall))'という名称になっていると思います。
+確認したIPアドレスをhostsに書き込みます。WSL2のUbuntu上で実行してください。
+
+    # Windows ホストの IP を取得
+    win_ip=(確認したIPアドレスをここに記載)
+    # /etc/hosts にエントリを追加（すでにある場合は更新）
+    sudo sed -i "/^$win_ip\s\+hypervhost$/d" /etc/hosts
+    echo "$win_ip hypervhost" | sudo tee -a /etc/hosts
+
+これでhostに下記のように書いてあるままでアクセスできるようになります。
 
 以上で準備は完了です。playbookが実行可能です。
 
 ## playbook実行方法(の例)
 - WSL2を起動
 - cd /mnt/c/repos/ansible-hyperv（※gitレポジトリまで移動）
-- ansible-playbook -i hosts create_ad.yml
+- ansible-playbook -i hosts create_ad.yml --ask-vault-pass
 
 # トラブルシューティング
 
@@ -191,3 +214,20 @@ group_vars/all/vault.ymlというファイルを新規に作成し、そこにva
 - WinRMが有効化されていることを確認してください。
 - group_vars/all.ymlに接続で利用するユーザー名、パスワード等が記載されていますので環境に合わせて書き換えてください。
 - 場合によってはgroup_vars/xxxx.ymlを作成し、グループ毎の接続設定を個別に設定してもら手も構いません。
+- winrm quickconfig　を実行して、再度WinRMを構成してください。
+- HTTPSリスナーを再構成することで解決するケースも多いです。
+
+    # 現在の設定の確認
+    winrm enumerate winrm/config/listener
+
+    # リスナーの削除(下記の<Address>は実際のAddressに置き換えて実行)
+    winrm delete winrm/config/Listener?Address=<Address> +Transport=HTTPS
+
+    # 新しい自己署名証明書の作成
+        New-SelfSignedCertificate -DnsName "your.server.fqdn" -CertStoreLocation Cert:\LocalMachine\My
+    Get-ChildItem -Path Cert:\LocalMachine\My | Where-Object { $_.Subject -like "*your.server.fqdn*" }
+    
+    # リスナーの作成
+    winrm create winrm/config/Listener?Address=*+Transport=HTTPS @{Hostname="your.server.fqdn"; CertificateThumbprint="サムプリント値"}
+
+

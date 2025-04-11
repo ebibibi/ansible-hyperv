@@ -49,7 +49,7 @@ vms:
       ip: 10.1.1.3
       netmask: 255.255.255.0
       gateway: 10.1.1.254
-      dns: 172.25.32.1
+      dns: 10.1.1.1
 
     network_switch: 'Nested NAT Switch'
 

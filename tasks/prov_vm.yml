@@ -31,15 +31,23 @@
   with_items: "{{ vms }}"
   register: new_vms
 
-- name: Configure VMs IP
+- name: Configure VMs IP (static)
   win_hyperv_guest_config_net:
     name: "{{item.name}}"
-    ip: "{{item.network.ip}}" 
+    ip: "{{item.network.ip}}"
     netmask: "{{item.network.netmask}}"
     gateway: "{{item.network.gateway}}"
     dns: "{{item.network.dns}}"
     type: static
   with_items: "{{ vms }}"
+  when: item.network.type is not defined or item.network.type == 'static'
+
+- name: Configure VMs IP (dhcp)
+  win_hyperv_guest_config_net:
+    name: "{{item.name}}"
+    type: dhcp
+  with_items: "{{ vms }}"
+  when: item.network.type is defined and item.network.type == 'dhcp'
 
 #- debug: var=new_vms.results
 
@@ -47,8 +55,9 @@
     name: "{{ item.item.network.ip }}"
     ansible_connection: winrm
     ansible_host: "{{ item.item.network.ip }}"
-    groups: "{{item.item.type}}" 
+    groups: "{{item.item.type}}"
   with_items: "{{ new_vms.results }}"
+  when: item.item.network.type is not defined or item.item.network.type == 'static'
 
 #- debug: var=groups
 #- debug: var=play_hosts
@@ -56,13 +65,14 @@
 - name: Poweron VMs
   win_hyperv_guest:
     name: "{{item.name}}"
-    state: started 
+    state: started
   with_items: "{{ vms }}"
 
-- name: Check winrm connectivity
+- name: Check winrm connectivity (static)
   win_wait_for:
     host: "{{ item.network.ip }}"
-    port: "{{ ansible_port }}" 
+    port: "{{ ansible_port }}"
     timeout: 3000
   with_items: "{{ vms }}"
+  when: item.network.type is not defined or item.network.type == 'static'
 

@@ -2,18 +2,19 @@
 172.25.32.1
 
 [windows]
-10.1.1.1 computername=dc01
-10.1.1.2 computername=dc02
-10.1.1.3 computername=win11
-10.1.1.4 computername=onprem-fs
+#10.1.1.1 computername=dc01
+#10.1.1.2 computername=dc02
+#10.1.1.3 computername=win11  # DHCP - IP will be assigned dynamically
+#10.1.1.4 computername=onprem-fs
+#10.1.1.5 computername=connect
 
 [firstDC]
-10.1.1.1
+#10.1.1.1
 
 [domainMembers]
-10.1.1.2
-10.1.1.3
-10.1.1.4
+#10.1.1.2
+#10.1.1.4
+#10.1.1.5
 
 [DCs]
-10.1.1.2
+#10.1.1.2

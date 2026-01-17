@@ -1,0 +1,54 @@
+# Environments.yml.sample - VM and AD Forest Configuration Example
+# Copy this file to Environments.yml and customize for your environment
+
+vms:
+  # Example: Domain Controller with static IP
+  - type: windows
+    name: "dc01"
+    cpu: 2
+    memory: 10240MB
+    network:
+      ip: 10.1.1.1
+      netmask: 255.255.255.0
+      gateway: 10.1.1.254
+      dns: 10.1.1.1
+    network_switch: 'Nested NAT Switch'
+    src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
+    dest_vhd: "D:\\Hyper-V\\Virtual hard disks\\dc01.vhdx"
+    d_diskpath: "D:\\Hyper-V\\Virtual hard disks\\dc01_D.vhdx"
+    d_disksize: 500GB
+
+  # Example: Windows 11 Client with DHCP
+  - type: windows
+    name: "win11"
+    cpu: 2
+    memory: 10240MB
+    network:
+      type: dhcp
+    network_switch: 'External Switch'
+    src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win11-gold.vhdx"
+    dest_vhd: "D:\\Hyper-V\\Virtual hard disks\\win11.vhdx"
+
+  # Example: Member Server with static IP
+  # - type: windows
+  #   name: "fs01"
+  #   cpu: 2
+  #   memory: 8192MB
+  #   network:
+  #     ip: 10.1.1.10
+  #     netmask: 255.255.255.0
+  #     gateway: 10.1.1.254
+  #     dns: 10.1.1.1
+  #   network_switch: 'Nested NAT Switch'
+  #   src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
+  #   dest_vhd: "D:\\Hyper-V\\Virtual hard disks\\fs01.vhdx"
+
+forest:
+  domain_name: "yourdomain.local"
+  recovery_password: "{{ vault_ansible_password }}"
+  upstream_dns_1: 172.25.32.1
+  upstream_dns_2: 8.8.8.8
+  reverse_dns_zone: "10.1.1.0/24"
+  ntp_servers: "0.jp.pool.ntp.org,1.jp.pool.ntp.org"
+  domain_admin_user: "administrator@yourdomain.local"
+  reverse_dns_zone_name: "1.1.10.in-addr.arpa"

@@ -1,23 +1,23 @@
 vms:
-  - type: windows
-    name: "dc01"
-
-    cpu: 2
-    memory: 10240MB
-
-    network:
-      ip: 10.1.1.1
-      netmask: 255.255.255.0
-      gateway: 10.1.1.254
-      dns: 10.1.1.1
-
-    network_switch: 'Nested NAT Switch'
-
-    src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
-    dest_vhd: "D:\\Hyper-V\\Virtual hard disks\\dc01.vhdx"
-
-    d_diskpath: "D:\\Hyper-V\\Virtual hard disks\\dc01_D.vhdx"
-    d_disksize: 500GB
+#  - type: windows
+#    name: "dc01"
+#
+#    cpu: 2
+#    memory: 10240MB
+#
+#    network:
+#      ip: 10.1.1.1
+#      netmask: 255.255.255.0
+#      gateway: 10.1.1.254
+#      dns: 10.1.1.1
+#
+#    network_switch: 'Nested NAT Switch'
+#
+#    src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
+#    dest_vhd: "D:\\Hyper-V\\Virtual hard disks\\dc01.vhdx"
+#
+#    d_diskpath: "D:\\Hyper-V\\Virtual hard disks\\dc01_D.vhdx"
+#    d_disksize: 500GB
 
 #  - type: windows
 #    name: "dc02"
@@ -39,39 +39,39 @@ vms:
 #    d_diskpath: "D:\\Hyper-V\\Virtual hard disks\\dc02_D.vhdx"
 #    d_disksize: 500GB
 
-  - type: windows
-    name: "onprem-fs"
+#  - type: windows
+#    name: "onprem-fs"
+#
+#    cpu: 2
+#    memory: 10240MB
+#
+#    network:
+#      ip: 10.1.1.4
+#      netmask: 255.255.255.0
+#      gateway: 10.1.1.254
+#      dns: 10.1.1.1
+#
+#    network_switch: 'Nested NAT Switch'
+#
+#    src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
+#    dest_vhd: "D:\\Hyper-V\\Virtual hard disks\\onprem-fs.vhdx"
 
-    cpu: 2
-    memory: 10240MB
-
-    network:
-      ip: 10.1.1.4
-      netmask: 255.255.255.0
-      gateway: 10.1.1.254
-      dns: 10.1.1.1
-
-    network_switch: 'Nested NAT Switch'
-
-    src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
-    dest_vhd: "D:\\Hyper-V\\Virtual hard disks\\onprem-fs.vhdx"
-
-  - type: windows
-    name: "connect"
-
-    cpu: 2
-    memory: 10240MB
-
-    network:
-      ip: 10.1.1.5
-      netmask: 255.255.255.0
-      gateway: 10.1.1.254
-      dns: 10.1.1.1
-
-    network_switch: 'Nested NAT Switch'
-
-    src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
-    dest_vhd: "D:\\Hyper-V\\Virtual hard disks\\connect.vhdx"
+#  - type: windows
+#    name: "connect"
+#
+#    cpu: 2
+#    memory: 10240MB
+#
+#    network:
+#      ip: 10.1.1.5
+#      netmask: 255.255.255.0
+#      gateway: 10.1.1.254
+#      dns: 10.1.1.1
+#
+#    network_switch: 'Nested NAT Switch'
+#
+#    src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win2022-gold.vhdx"
+#    dest_vhd: "D:\\Hyper-V\\Virtual hard disks\\connect.vhdx"
 
   - type: windows
     name: "win11"
@@ -80,12 +80,9 @@ vms:
     memory: 10240MB
 
     network:
-      ip: 10.1.1.3
-      netmask: 255.255.255.0
-      gateway: 10.1.1.254
-      dns: 10.1.1.1
+      type: dhcp
 
-    network_switch: 'Nested NAT Switch'
+    network_switch: 'External Switch'
 
     src_vhd: "D:\\Hyper-V\\Virtual Hard Disks\\GoldenImages\\win11-gold.vhdx"
     dest_vhd: "D:\\Hyper-V\\Virtual hard disks\\win11.vhdx"
